@@ -1,6 +1,6 @@
-# pongo-test
+# WhatsNext app
 
-## Project setup
+## First thing to do - install dependancies
 ```
 yarn install
 ```
