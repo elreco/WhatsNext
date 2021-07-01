@@ -28,7 +28,7 @@
             </section>
             <section class="relative py-16 bg-gray-300">
                 <div class="container mx-auto px-4">
-                    <div class="grid grid-cols-3 gap-4">
+                    <div class="grid sm:grid-cols-2 xl:grid-cols-3 grid-cols-1 gap-8 -mt-64">
                         <restaurant-card-component v-for="restaurant in restaurants" :key="restaurant.id" :restaurant="restaurant"></restaurant-card-component>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ export default {
                     categories: this.categories,
                 },
             })
-            this.restaurants = data
+            this.restaurants = data && data.businesses
             this.loading = false
         },
     },
