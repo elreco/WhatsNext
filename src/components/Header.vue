@@ -24,7 +24,7 @@
           lg:w-auto lg:static lg:block lg:justify-start
         "
       >
-        <a
+        <router-link
           class="
             text-sm
             font-bold
@@ -36,8 +36,8 @@
             uppercase
             text-white
           "
-          href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
-          >{{appName}}</a
+          :to="{ name: 'home' }"
+          >{{ appName }}</router-link
         ><button
           class="
             cursor-pointer
@@ -119,7 +119,8 @@
         </ul>
         <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
           <li class="flex items-center">
-            <router-link :to="{ name: 'restaurant.index' }"
+            <router-link
+              :to="{ name: 'restaurant.index' }"
               class="
                 bg-white
                 text-gray-800
@@ -154,7 +155,7 @@ export default {
   data() {
     return {
       showMenu: false,
-      appName: process.env.VUE_APP_NAME ? process.env.VUE_APP_NAME : 'Nobody'
+      appName: process.env.VUE_APP_NAME ? process.env.VUE_APP_NAME : "Nobody",
     };
   },
   methods: {

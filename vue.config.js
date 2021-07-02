@@ -7,8 +7,8 @@ module.exports = {
         changeOrigin: true,
         secure: false,
         headers: {
-          'Authorization': `Bearer ${process.env.API_KEY}`,
-        }
+          Authorization: `Bearer ${process.env.API_KEY}`,
+        },
       },
     },
   },

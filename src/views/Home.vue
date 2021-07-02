@@ -35,8 +35,8 @@
                   easily partner restaurants around your hotel.
                   <br /><strong>
                     Note that it's a
-                    <span class="text-yellow-500">preview version</span> of
-                    the final product. <br />Testing purpose only.</strong
+                    <span class="text-yellow-500">preview version</span> of the
+                    final product. <br />Testing purpose only.</strong
                   >
                 </p>
               </div>
@@ -187,7 +187,7 @@ export default {
   name: "home",
   components: {
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   },
 };
 </script>
