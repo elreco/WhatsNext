@@ -46,11 +46,21 @@
           <div
             class="grid sm:grid-cols-2 xl:grid-cols-3 grid-cols-1 gap-8 -mt-64"
           >
+            <loader-grid-component v-if="loading" />
             <restaurant-card-component
+              v-else
               v-for="restaurant in restaurants"
               :key="restaurant.id"
               :restaurant="restaurant"
             ></restaurant-card-component>
+          </div>
+          <div class="text-center">
+            <pagination-component
+              v-if="total && perPage"
+              :total="total"
+              :per-page="perPage"
+              :current-page="currentPage()"
+            />
           </div>
         </div>
       </section>
@@ -61,7 +71,9 @@
 <script>
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
+import PaginationComponent from "@/components/Pagination";
 import RestaurantCardComponent from "@/components/restaurant/Card";
+import LoaderGridComponent from "@/components/loader/Grid";
 
 export default {
   name: "home",
@@ -71,28 +83,46 @@ export default {
       location: "485 7th Ave, New York, NY 10018",
       categories: "restaurants",
       restaurants: [],
+      perPage: 9,
+      total: 0,
       loading: true,
     };
   },
   components: {
     HeaderComponent,
     FooterComponent,
+    PaginationComponent,
     RestaurantCardComponent,
+    LoaderGridComponent,
   },
   async mounted() {
     this.getRestaurants();
   },
+  watch: {
+    async "$route.query"() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      await this.getRestaurants();
+    },
+  },
   methods: {
+    currentPage() {
+      return this.$route.query.page
+        ? parseInt(this.$route.query.page)
+        : parseInt(1);
+    },
     async getRestaurants() {
       this.loading = true;
       const { data } = await this.axios.get("businesses/search", {
         params: {
+          offset: (this.currentPage() - 1) * this.perPage,
+          limit: this.perPage,
           location: this.location,
           categories: this.categories,
         },
       });
       this.restaurants = data && data.businesses;
-      this.loading = false;
+      this.total = data.total;
+      setTimeout(() => (this.loading = false), 500);
     },
   },
 };
