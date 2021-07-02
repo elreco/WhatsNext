@@ -5,6 +5,7 @@
         <div class="w-full h-72 rounded-lg shadow-md relative overflow-hidden">
           <div
             class="
+            bg-white
               img-hover
               bg-center
               rounded-lg
@@ -18,7 +19,7 @@
         <div class="relative px-4 -mt-16">
           <div
             class="bg-white p-6 rounded-lg shadow-lg"
-            style="height: 175px"
+            style="height: 280px"
           ></div>
         </div>
       </div>

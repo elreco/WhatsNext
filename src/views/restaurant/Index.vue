@@ -1,7 +1,7 @@
 <template>
   <div>
     <header-component></header-component>
-    <main class="profile-page">
+    <main>
       <section class="relative block" style="height: 500px">
         <div
           class="absolute top-0 w-full h-full bg-top bg-cover"
@@ -41,8 +41,16 @@
           </svg>
         </div>
       </section>
-      <section class="relative py-16 bg-gray-300">
+      <section class="relative py-16 bg-gray-300" style="min-height: 350px;">
         <div class="container mx-auto px-4">
+          <div class="text-white relative px-6 py-4 border-0 rounded mb-4 bg-pink-500" v-if="!loading && restaurants.length === 0">
+            <span class="text-xl inline-block mr-5 align-middle">
+              <i class="fas fa-times" />
+            </span>
+            <span class="inline-block align-middle mr-8">
+              <b class="capitalize">No result!</b> There is no restaurant right here!
+            </span>
+          </div>
           <div
             class="grid sm:grid-cols-2 xl:grid-cols-3 grid-cols-1 gap-8 -mt-64"
           >
@@ -56,7 +64,7 @@
           </div>
           <div class="text-center">
             <pagination-component
-              v-if="total && perPage"
+              v-if="total && perPage && !loading && restaurants.length > 0"
               :total="total"
               :per-page="perPage"
               :current-page="currentPage()"
