@@ -104,7 +104,7 @@ export default {
       location: "485 7th Ave, New York, NY 10018",
       categories: "restaurants",
       restaurants: [],
-      perPage: 9,
+      perPage: 18,
       total: 0,
       loading: true,
     };
