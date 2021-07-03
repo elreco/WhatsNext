@@ -16,25 +16,27 @@
     <div class="px-6">
       <div class="flex flex-wrap justify-center">
         <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-          <div class="relative" style="width: 150px; height: 150px">
-            <img
-              alt="restaurant.name"
-              :src="restaurant.image_url"
+          <div class="relative">
+            <div
               class="
                 shadow-xl
                 rounded-full
-                h-auto
                 align-middle
                 border-none
-                object-contain
+                object-cover
                 absolute
                 -m-16
                 -ml-20
                 lg:-ml-16
-                w-full
-                h-full
               "
-            />
+              style="width: 150px; height: 150px"
+            >
+              <img
+                :alt="restaurant.name"
+                :src="restaurant.image_url"
+                class="rounded-full h-full w-full object-cover"
+              />
+            </div>
           </div>
         </div>
         <div
@@ -123,7 +125,7 @@
             mb-2
           "
         >
-          Jenna Stones
+          {{ restaurant.name }}
         </h3>
         <div
           class="

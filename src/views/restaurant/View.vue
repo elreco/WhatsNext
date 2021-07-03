@@ -64,8 +64,7 @@
               <i class="fas fa-times" />
             </span>
             <span class="inline-block align-middle mr-8">
-              <b class="capitalize">No result!</b> There is no restaurant right
-              here!
+              <b class="capitalize">No result!</b> Restaurant not found!
             </span>
           </div>
           <loader-box-component v-if="loading" />
@@ -106,10 +105,15 @@ export default {
   methods: {
     async getRestaurant() {
       this.loading = true;
-      const { data } = await this.axios.get(
-        `businesses/${this.$route.params.id}`
-      );
-      this.restaurant = data;
+      try {
+        const { data } = await this.axios.get(
+          `businesses/${this.$route.params.id}`
+        );
+        this.restaurant = data;
+      } catch (error) {
+        this.restaurant = null;
+      }
+
       setTimeout(() => (this.loading = false), 500);
     },
   },
