@@ -5,7 +5,6 @@ WhatsNext is a [technical test](https://www.notion.so/Front-technical-test-3b5ad
 ## Demo
 
 Demo is available [here](https://whatsnext.elreco.fr).
-Deployed on a Docker container with a Digital Ocean droplet.
 
 ## Installation
 
