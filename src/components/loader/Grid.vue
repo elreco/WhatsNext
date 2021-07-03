@@ -5,7 +5,7 @@
         <div class="w-full h-72 rounded-lg shadow-md relative overflow-hidden">
           <div
             class="
-            bg-white
+              bg-white
               img-hover
               bg-center
               rounded-lg

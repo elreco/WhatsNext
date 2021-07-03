@@ -5,7 +5,11 @@
       <section class="relative block" style="height: 500px">
         <div
           class="absolute top-0 w-full h-full bg-center bg-cover"
-          :style="!loading && restaurant ? `background-image: url('${restaurant.image_url}')` : `background-image: url('/images/restaurant-wallpaper-2.jpg')`"
+          :style="
+            !loading && restaurant
+              ? `background-image: url('${restaurant.image_url}')`
+              : `background-image: url('/images/restaurant-wallpaper-2.jpg')`
+          "
         >
           <span
             id="blackOverlay"
@@ -41,14 +45,27 @@
           </svg>
         </div>
       </section>
-      <section class="relative py-16 bg-gray-300" style="min-height: 350px;">
+      <section class="relative py-16 bg-gray-300" style="min-height: 350px">
         <div class="container mx-auto px-4">
-          <div class="text-white relative px-6 py-4 border-0 rounded mb-4 bg-pink-500" v-if="!loading && !restaurant">
+          <div
+            class="
+              text-white
+              relative
+              px-6
+              py-4
+              border-0
+              rounded
+              mb-4
+              bg-pink-500
+            "
+            v-if="!loading && !restaurant"
+          >
             <span class="text-xl inline-block mr-5 align-middle">
               <i class="fas fa-times" />
             </span>
             <span class="inline-block align-middle mr-8">
-              <b class="capitalize">No result!</b> There is no restaurant right here!
+              <b class="capitalize">No result!</b> There is no restaurant right
+              here!
             </span>
           </div>
           <loader-box-component v-if="loading" />
@@ -89,7 +106,9 @@ export default {
   methods: {
     async getRestaurant() {
       this.loading = true;
-      const { data } = await this.axios.get(`businesses/${this.$route.params.id}`);
+      const { data } = await this.axios.get(
+        `businesses/${this.$route.params.id}`
+      );
       this.restaurant = data;
       setTimeout(() => (this.loading = false), 500);
     },
