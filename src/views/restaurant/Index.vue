@@ -142,7 +142,7 @@ export default {
             categories: this.categories,
           },
         });
-        this.restaurants = data && data.businesses;
+        this.restaurants = data && data.businesses ? data.businesses : [];
         this.total = data.total;
       } catch (error) {
         this.restaurants = [];
