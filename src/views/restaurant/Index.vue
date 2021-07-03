@@ -133,16 +133,22 @@ export default {
     },
     async getRestaurants() {
       this.loading = true;
-      const { data } = await this.axios.get("businesses/search", {
-        params: {
-          offset: (this.currentPage() - 1) * this.perPage,
-          limit: this.perPage,
-          location: this.location,
-          categories: this.categories,
-        },
-      });
-      this.restaurants = data && data.businesses;
-      this.total = data.total;
+      try {
+        const { data } = await this.axios.get("businesses/search", {
+          params: {
+            offset: (this.currentPage() - 1) * this.perPage,
+            limit: this.perPage,
+            location: this.location,
+            categories: this.categories,
+          },
+        });
+        this.restaurants = data && data.businesses;
+        this.total = data.total;
+      } catch (error) {
+        this.restaurants = [];
+        this.total = 0;
+      }
+
       setTimeout(() => (this.loading = false), 500);
     },
   },
