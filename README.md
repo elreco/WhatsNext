@@ -1,6 +1,13 @@
 # WhatsNext app
 
-## First thing to do - install dependancies
+## Demo
+
+Demo is available [here](https://whatsnext.elreco.fr).
+Deployed on a Docker container with a Digital Ocean droplet.
+
+## Installation
+
+### First thing to do - install dependancies
 ```
 yarn install
 ```
