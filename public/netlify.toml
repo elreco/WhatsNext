@@ -1,0 +1,6 @@
+[[redirects]]
+  from = "/api/*"
+  to = "https://api.yelp.com/v3/"
+  status = 200
+  force = true
+  headers = {Authorization = "Bearer yoyRQ-tWDf60u5127xg74Vk0iIScbO8dJ0QwBf2UtDXIZe9fDuTrUufFo2phEn2BgEACX2z8v7jGD_1dSNJhMHUKiHdPnrQbjORxZStKpcNvjDRa4Y9ks6O3FZTdYHYx"}
