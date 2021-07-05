@@ -72,10 +72,31 @@
             </span>
           </div>
           <loader-box-component v-if="loading" />
-          <restaurant-box-component
-            v-else
-            :restaurant="restaurant"
-          ></restaurant-box-component>
+          <template v-else>
+            <restaurant-box-component
+              :restaurant="restaurant"
+            ></restaurant-box-component>
+
+            <h3
+              class="
+                text-4xl
+                w-8/12
+                lg:w-3/12
+                font-semibold
+                leading-normal
+                text-blueGray-700
+                border-b-4 border-yellow-500
+                mb-0
+              "
+            >
+              Reviews
+            </h3>
+            <restaurant-comment-card-component
+              v-for="comment in comments"
+              :key="comment.id"
+              :comment="comment"
+            ></restaurant-comment-card-component>
+          </template>
         </div>
       </section>
     </main>
@@ -86,6 +107,7 @@
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import RestaurantBoxComponent from "@/components/restaurant/Box";
+import RestaurantCommentCardComponent from "@/components/restaurant/CommentCard";
 import LoaderBoxComponent from "@/components/loader/Box";
 
 export default {
@@ -94,21 +116,25 @@ export default {
     return {
       appName: process.env.VUE_APP_NAME ? process.env.VUE_APP_NAME : "Nobody",
       restaurant: {},
+      comments: [],
       loading: true,
     };
   },
   components: {
     HeaderComponent,
     FooterComponent,
+    RestaurantCommentCardComponent,
     RestaurantBoxComponent,
     LoaderBoxComponent,
   },
   async mounted() {
+    this.loading = true;
     this.getRestaurant();
+    this.getComments();
+    setTimeout(() => (this.loading = false), 500);
   },
   methods: {
     async getRestaurant() {
-      this.loading = true;
       try {
         const { data } = await this.axios.get(
           `businesses/${this.$route.params.id}`
@@ -121,8 +147,16 @@ export default {
       } catch (error) {
         this.restaurant = null;
       }
-
-      setTimeout(() => (this.loading = false), 500);
+    },
+    async getComments() {
+      try {
+        const { data } = await this.axios.get(
+          `businesses/${this.$route.params.id}/reviews`
+        );
+        this.comments = data && data.reviews ? data.reviews : [];
+      } catch (error) {
+        this.comments = [];
+      }
     },
   },
 };

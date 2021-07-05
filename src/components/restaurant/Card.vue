@@ -94,7 +94,7 @@
             <p>{{ displayDistance() }} kilometers aways</p>
             <div class="mt-4">
               <span :class="ratingColor()" class="text-md font-semibold"
-                >{{ restaurant.rating }}/5 ratings
+                >{{ restaurant.rating }}/5 rating
               </span>
               <span class="text-sm text-gray-600"
                 >(based on {{ restaurant.review_count }} ratings)</span
