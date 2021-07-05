@@ -4895,3 +4895,9 @@ select {
     transform: translateX(100%);
  }
 }
+
+@media (min-width: 1024px){
+.lg\:mt-0 {
+  margin-top:0px!important;
+}
+}
