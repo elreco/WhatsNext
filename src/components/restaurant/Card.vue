@@ -23,25 +23,7 @@
         </router-link>
         <div class="relative px-4 -mt-16">
           <div class="bg-white p-6 rounded-lg shadow-lg auto-rows-max">
-            <div class="flex items-baseline mb-2">
-              <span
-                class="
-                  text-xs
-                  px-2
-                  inline-block
-                  rounded-full
-                  uppercase
-                  font-semibold
-                  tracking-wide
-                "
-                :class="
-                  !restaurant.is_closed
-                    ? 'bg-red-200 text-red-800'
-                    : 'bg-teal-200 text-teal-800'
-                "
-              >
-                {{ !restaurant.open_now ? "Closed" : "Open" }}
-              </span>
+            <div class="mb-2">
               <span
                 class="
                   text-xs

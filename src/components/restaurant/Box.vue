@@ -126,24 +126,6 @@
         <span
           class="
             text-xs
-            px-2
-            inline-block
-            rounded-full
-            uppercase
-            font-semibold
-            tracking-wide
-          "
-          :class="
-            !restaurant.open_now
-              ? 'bg-red-200 text-red-800'
-              : 'bg-teal-200 text-teal-800'
-          "
-        >
-          {{ !restaurant.open_now ? "Closed" : "Open" }}
-        </span>
-        <span
-          class="
-            text-xs
             ml-2
             px-2
             inline-block
