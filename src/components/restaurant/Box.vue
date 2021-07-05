@@ -126,7 +126,6 @@
         <span
           class="
             text-xs
-            ml-2
             px-2
             inline-block
             rounded-full
