@@ -1,6 +1,12 @@
 <template>
   <div>
-    <table class="items-center w-full bg-transparent border-collapse">
+    <div
+      v-if="hours && hours.length === 0"
+      class="text-white relative px-6 py-4 border-0 bg-yellow-500"
+    >
+      <span class="inline-block align-middle mr-8"> No special hours </span>
+    </div>
+    <table v-else class="items-center w-full bg-transparent border-collapse">
       <thead>
         <tr>
           <th
