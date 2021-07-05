@@ -7,3 +7,5 @@
   to = "https://api.yelp.com/v3/:splat"
   status = 200
   force = true
+  [redirects.headers]
+    Content-Type = 'application/json'
