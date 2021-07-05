@@ -3,7 +3,7 @@
   to = "/index.html"
   status = 200
 [[redirects]]
-  from = "/api"
+  from = "/api/*"
   to = "https://api.yelp.com/v3/"
   status = 200
   force = true

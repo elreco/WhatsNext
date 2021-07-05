@@ -4,7 +4,7 @@ WhatsNext is a [technical test](https://www.notion.so/Front-technical-test-3b5ad
 
 ## Demo
 
-Demo is available [here](https://whatsnext.elreco.fr).
+Demo is available [here](https://whats-next.elreco.fr).
 
 ## Installation
 
