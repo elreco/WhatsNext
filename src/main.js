@@ -10,8 +10,11 @@ const cache = setupCache({
   maxAge: 2 * 60 * 1000,
 });
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: process.env.VUE_APP_API_URL,
   adapter: cache.adapter,
+  headers: {
+    Authorization: `Bearer ${process.env.VUE_APP_API_KEY}`,
+  },
 });
 /* CSS */
 import "./index.css";
