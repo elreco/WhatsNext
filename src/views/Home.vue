@@ -163,16 +163,16 @@
                   </svg>
                   <h4 class="text-xl font-bold text-white">Built for Pongo</h4>
                   <p class="text-md font-light mt-2 text-white">
-                    App built for
+                    App built for a
                     <a
-                      class="font-bold text-black hover:text-white"
+                      class="font-semibold text-black hover:text-white"
                       href="https://www.heypongo.com/"
                       target="_blank"
                       >Pongo</a
                     >
-                    and developed by
+                    technical test and developed by
                     <a
-                      class="font-bold text-black hover:text-white"
+                      class="font-semibold text-black hover:text-white"
                       href="https://elreco.fr"
                       target="_blank"
                       >Alexandre Le Corre.</a

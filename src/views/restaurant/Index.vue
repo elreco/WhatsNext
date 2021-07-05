@@ -136,6 +136,7 @@ export default {
       try {
         const { data } = await this.axios.get("businesses/search", {
           params: {
+            sort_by: "distance",
             offset: (this.currentPage() - 1) * this.perPage,
             limit: this.perPage,
             location: this.location,

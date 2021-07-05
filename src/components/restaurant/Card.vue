@@ -13,7 +13,11 @@
           >
             <div
               class="img-hover bg-center rounded-lg w-full h-full bg-cover"
-              :style="`background-image:url(${restaurant.image_url})`"
+              :style="`background-image:url(${
+                restaurant.image_url
+                  ? restaurant.image_url
+                  : '/images/placeholder.jpg'
+              })`"
             ></div>
           </div>
         </router-link>
@@ -167,7 +171,7 @@ export default {
     },
     displayDistance() {
       var km = this.restaurant.distance ? this.restaurant.distance / 1000 : 0;
-      return km.toFixed(2);
+      return km.toFixed(3);
     },
   },
 };

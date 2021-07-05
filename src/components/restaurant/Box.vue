@@ -32,7 +32,11 @@
           >
             <img
               :alt="restaurant.name"
-              :src="restaurant.image_url"
+              :src="
+                restaurant.image_url
+                  ? restaurant.image_url
+                  : '/images/placeholder.jpg'
+              "
               class="rounded-full h-full w-full object-cover"
             />
           </div>
@@ -78,7 +82,7 @@
                 text-blueGray-600
               "
               >{{ restaurant.rating }}/5</span
-            ><span class="text-sm text-blueGray-400">ratings</span>
+            ><span class="text-sm text-blueGray-400">Rating</span>
           </div>
           <div class="mr-4 p-3 text-center">
             <span

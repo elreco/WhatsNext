@@ -7,8 +7,12 @@
           class="absolute top-0 w-full h-full bg-center bg-cover"
           :style="
             !loading && restaurant
-              ? `background-image: url('${restaurant.image_url}')`
-              : `background-image: url('/images/restaurant-wallpaper-2.jpg')`
+              ? `background-image: url('${
+                  restaurant.image_url
+                    ? restaurant.image_url
+                    : '/images/placeholder.jpg'
+                }')`
+              : `background-image: url('/images/placeholder.jpg')`
           "
         >
           <span
