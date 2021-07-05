@@ -34,6 +34,15 @@ yarn serve
 yarn build
 ```
 
+## Todo
+
+- Filter restaurant list
+    - by rating
+    - by price
+    - by category
+- Internationalization
+- Meta title & description
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
