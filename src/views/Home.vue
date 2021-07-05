@@ -25,7 +25,7 @@
         </div>
         <div class="container relative mx-auto">
           <div class="items-center flex flex-wrap">
-            <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
+            <div class="w-full xl:w-6/12 px-4 ml-auto mr-auto text-center">
               <h1 class="text-white font-semibold text-5xl">
                 Welcome to <span class="text-yellow-500">WhatsNext</span>.
               </h1>
