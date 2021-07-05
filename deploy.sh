@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+#trigger
 
 # abort on errors
 set -e
