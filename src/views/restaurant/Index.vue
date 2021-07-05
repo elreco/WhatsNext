@@ -143,7 +143,8 @@ export default {
           },
         });
         this.restaurants = data && data.businesses ? data.businesses : [];
-        this.total = data.total;
+        /* this.total = data.total; */
+        this.total = 990;
       } catch (error) {
         this.restaurants = [];
         this.total = 0;

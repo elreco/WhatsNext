@@ -109,7 +109,7 @@
     </router-link>
     <router-link
       :disabled="isInLastPage"
-      :to="getRoute(currentPage + 1)"
+      :to="isInLastPage ? getRoute(currentPage) : getRoute(currentPage + 1)"
       class="
         relative
         inline-flex

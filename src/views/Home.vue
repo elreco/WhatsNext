@@ -145,7 +145,7 @@
               >
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1051&amp;q=80"
+                  src="/images/pongo.jpg"
                   class="w-full align-middle rounded-t-lg"
                 />
                 <blockquote class="relative p-8 mb-4">
@@ -161,13 +161,22 @@
                       class="text-yellow-500 fill-current"
                     ></polygon>
                   </svg>
-                  <h4 class="text-xl font-bold text-white">
-                    Top Notch Services
-                  </h4>
+                  <h4 class="text-xl font-bold text-white">Built for Pongo</h4>
                   <p class="text-md font-light mt-2 text-white">
-                    The Arctic Ocean freezes every winter and much of the
-                    sea-ice then thaws every summer, and that process will
-                    continue whatever happens.
+                    App built for
+                    <a
+                      class="font-bold text-black hover:text-white"
+                      href="https://www.heypongo.com/"
+                      target="_blank"
+                      >Pongo</a
+                    >
+                    and developed by
+                    <a
+                      class="font-bold text-black hover:text-white"
+                      href="https://elreco.fr"
+                      target="_blank"
+                      >Alexandre Le Corre.</a
+                    >
                   </p>
                 </blockquote>
               </div>

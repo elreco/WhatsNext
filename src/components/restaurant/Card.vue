@@ -3,7 +3,10 @@
     <div class="wrapper antialiased text-gray-900 mb-5">
       <div>
         <router-link
-          :to="{ name: 'restaurant.view', params: { id: restaurant.id } }"
+          :to="{
+            name: 'restaurant.view',
+            params: { id: restaurant.id, alias: restaurant.alias },
+          }"
         >
           <div
             class="w-full h-72 rounded-lg shadow-md relative overflow-hidden"
@@ -28,12 +31,12 @@
                   tracking-wide
                 "
                 :class="
-                  restaurant.is_closed
+                  !restaurant.is_closed
                     ? 'bg-red-200 text-red-800'
                     : 'bg-teal-200 text-teal-800'
                 "
               >
-                {{ restaurant.is_closed ? "Closed" : "Open" }}
+                {{ !restaurant.open_now ? "Closed" : "Open" }}
               </span>
               <span
                 class="
@@ -54,7 +57,10 @@
             </div>
 
             <router-link
-              :to="{ name: 'restaurant.view', params: { id: restaurant.id } }"
+              :to="{
+                name: 'restaurant.view',
+                params: { id: restaurant.id, alias: restaurant.alias },
+              }"
               class="
                 h4
                 hover:text-yellow-500

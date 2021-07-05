@@ -15,6 +15,15 @@ It's recommended to use [Yarn](https://yarnpkg.com/)
 yarn install
 ```
 
+### Create env file
+```
+cp .env .env.local
+```
+
+- Get an api key on https://www.yelp.com/developers and fill the variables `VUE_APP_API_KEY` & `VUE_APP_API_URL`.
+- Give a name to your app by setting the `VUE_APP_NAME` variable.
+- Get a google API key and set the `VUE_APP_GOOGLE_API` variable.
+
 ### Compiles and hot-reloads for development
 ```
 yarn serve

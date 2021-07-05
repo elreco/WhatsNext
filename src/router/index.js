@@ -15,7 +15,7 @@ const routes = [
     component: RestaurantIndex,
   },
   {
-    path: "/restaurant/:id",
+    path: "/restaurant/:id/:alias",
     name: "restaurant.view",
     component: RestaurantView,
   },

@@ -90,8 +90,8 @@
                 tracking-wide
                 text-blueGray-600
               "
-              >{{ displayDistance() }}</span
-            ><span class="text-sm text-blueGray-400">kilometers aways</span>
+              >{{ restaurant.review_count }}</span
+            ><span class="text-sm text-blueGray-400">Reviews</span>
           </div>
         </div>
       </div>
@@ -130,12 +130,12 @@
             tracking-wide
           "
           :class="
-            restaurant.is_closed
+            !restaurant.open_now
               ? 'bg-red-200 text-red-800'
               : 'bg-teal-200 text-teal-800'
           "
         >
-          {{ restaurant.is_closed ? "Closed" : "Open" }}
+          {{ !restaurant.open_now ? "Closed" : "Open" }}
         </span>
         <span
           class="
@@ -194,7 +194,7 @@
           height="350"
           frameborder="0"
           style="border: 0"
-          :src="`https://www.google.com/maps/embed/v1/place?key=AIzaSyApkj-YzyeK4psOw5GTZTLoWaPiW5BkAyI&q=${getFullAdress()}`"
+          :src="`https://www.google.com/maps/embed/v1/place?key=${googleApiKey}=${getFullAdress()}`"
           allowfullscreen
         >
         </iframe>
@@ -204,26 +204,60 @@
           :images="restaurant.photos"
         />
       </div>
-
-      <div class="mb-2 text-blueGray-600 mt-10">
-        <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i
-        >{{ restaurant }}
-      </div>
-      <div class="mb-2 text-blueGray-600">
-        <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i
-        >University of Computer Science
-      </div>
     </div>
-    <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
+    <div class="py-10 text-center">
       <div class="flex flex-wrap justify-center">
-        <div class="w-full lg:w-9/12 px-4">
-          <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-            An artist of considerable range, Jenna the name taken by
-            Melbourne-raised, Brooklyn-based Nick Murphy writes, performs and
-            records all of his own music, giving it a warm, intimate feel with a
-            solid groove structure. An artist of considerable range.
-          </p>
-          <a href="#pablo" class="font-normal text-pink-500">Show more</a>
+        <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-8">
+          <div
+            class="
+              relative
+              flex flex-col
+              min-w-0
+              break-words
+              bg-white
+              w-full
+              mb-6
+              shadow-lg
+              rounded
+              border
+            "
+          >
+            <div class="rounded-t mb-0 px-4 py-3 border-0">
+              <div class="flex flex-wrap items-left">
+                <h3 class="font-semibold text-base text-blueGray-700">Hours</h3>
+              </div>
+            </div>
+            <div class="block w-full overflow-x-auto">
+              <hours-table-component :hours="hours" />
+            </div>
+          </div>
+        </div>
+        <div class="w-full xl:w-4/12 mb-12 xl:mb-0 px-8">
+          <div
+            class="
+              relative
+              flex flex-col
+              min-w-0
+              break-words
+              bg-white
+              w-full
+              mb-6
+              shadow-lg
+              rounded
+              border
+            "
+          >
+            <div class="rounded-t mb-0 px-4 py-3 border-0">
+              <div class="flex flex-wrap items-left">
+                <h3 class="font-semibold text-base text-blueGray-700">
+                  Special Hours
+                </h3>
+              </div>
+            </div>
+            <div class="block w-full overflow-x-auto">
+              <hours-table-component :hours="specialHours" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -231,6 +265,8 @@
 </template>
 <script>
 import SliderComponent from "@/components/Slider";
+import HoursTableComponent from "./HoursTable";
+import moment from "moment";
 
 export default {
   props: {
@@ -239,11 +275,61 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      googleApiKey: process.env.VUE_APP_GOOGLE_API,
+      days: {
+        0: "Monday",
+        1: "Tuesday",
+        2: "Wednesday",
+        3: "Thursday",
+        4: "Friday",
+        5: "Saturday",
+        6: "Sunday",
+      },
+      hours: [],
+      specialHours: [],
+    };
+  },
   components: {
     SliderComponent,
+    HoursTableComponent,
+  },
+  mounted() {
+    this.getHours();
+    this.getSpecialHours();
   },
   methods: {
+    getHours() {
+      this.restaurant.hours &&
+        this.restaurant.hours[0] &&
+        this.restaurant.hours[0].open &&
+        this.restaurant.hours[0].open.forEach((hour) => {
+          this.hours.push({
+            day: this.days[hour.day] ? this.days[hour.day] : "",
+            start: moment(hour.start, "HH:mm").format("h[h]mm A"),
+            end: moment(hour.end, "HH:mm").format("h[h]mm A"),
+          });
+        });
+    },
+    getSpecialHours() {
+      this.restaurant.special_hours &&
+        this.restaurant.special_hours.forEach((hour) => {
+          this.specialHours.push({
+            day: moment(hour.date).format("MMM Do YY"),
+            start:
+              hour.start && !hour.is_closed
+                ? moment(hour.start, "HH:mm").format("h[h]mm A")
+                : '<span class="text-red-500">Closed</span>',
+            end:
+              hour.end && !hour.is_closed
+                ? moment(hour.end, "HH:mm").format("h[h]mm A")
+                : '<span class="text-red-500">Closed</span>',
+          });
+        });
+    },
     getFullAdress() {
+      console.log(this.restaurant);
       var address = "";
       this.restaurant.location &&
         this.restaurant.location.display_address.forEach((addr) => {
@@ -261,10 +347,6 @@ export default {
         price = "Gastronomic";
       }
       return price;
-    },
-    displayDistance() {
-      var km = this.restaurant.distance ? this.restaurant.distance / 1000 : 0;
-      return km.toFixed(2);
     },
   },
 };

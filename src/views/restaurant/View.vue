@@ -109,7 +109,11 @@ export default {
         const { data } = await this.axios.get(
           `businesses/${this.$route.params.id}`
         );
-        this.restaurant = data;
+        if (data.alias === this.$route.params.alias) {
+          this.restaurant = data;
+        } else {
+          this.restaurant = null;
+        }
       } catch (error) {
         this.restaurant = null;
       }
