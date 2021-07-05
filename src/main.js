@@ -20,4 +20,7 @@ const api = axios.create({
 import "./index.css";
 import "@/assets/whatsnext.css";
 
-createApp(App).use(VueAxios, api).use(router).mount("#app");
+const app = createApp(App);
+app.use(VueAxios, api);
+app.use(router);
+app.mount("#app");

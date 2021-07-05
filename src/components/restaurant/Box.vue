@@ -41,30 +41,28 @@
       <div
         class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center"
       >
-        <div class="py-6 px-3 mt-24 lg:mt-0 text-center
-                lg:text-right">
+        <div class="py-6 px-3 mt-24 lg:mt-0 text-center lg:text-right">
           <a
-              class="
-                bg-yellow-500
-                text-white
-                active:bg-yellow-50
-                hover:bg-yellow-600
-                text-xs
-                font-bold
-                uppercase
-                px-4
-                py-2
-                rounded
-                shadow
-                hover:shadow-md
-                outline-none
-                focus:outline-none
-
-              "
-              target="_blank"
-              :href="restaurant.url"
-              ><i class="fas fa-external-link-alt"></i> View on Yelp</a
-            >
+            class="
+              bg-yellow-500
+              text-white
+              active:bg-yellow-50
+              hover:bg-yellow-600
+              text-xs
+              font-bold
+              uppercase
+              px-4
+              py-2
+              rounded
+              shadow
+              hover:shadow-md
+              outline-none
+              focus:outline-none
+            "
+            target="_blank"
+            :href="restaurant.url"
+            ><i class="fas fa-external-link-alt"></i> Order on Yelp</a
+          >
         </div>
       </div>
       <div class="w-full lg:w-4/12 px-4 lg:order-1">
@@ -106,11 +104,57 @@
           leading-normal
           mb-2
           text-blueGray-700
-          mb-2
+          mb-0
         "
       >
         {{ restaurant.name }}
       </h3>
+      <div class="text-gray-600 uppercase text-xs font-semibold tracking-wider">
+        <span
+          v-for="(categorie, index) in restaurant.categories"
+          :key="categorie"
+        >
+          {{ categorie.title }}
+          {{ index !== restaurant.categories.length - 1 ? "&bull; " : "" }}
+        </span>
+      </div>
+      <div class="mb-4">
+        <span
+          class="
+            text-xs
+            px-2
+            inline-block
+            rounded-full
+            uppercase
+            font-semibold
+            tracking-wide
+          "
+          :class="
+            restaurant.is_closed
+              ? 'bg-red-200 text-red-800'
+              : 'bg-teal-200 text-teal-800'
+          "
+        >
+          {{ restaurant.is_closed ? "Closed" : "Open" }}
+        </span>
+        <span
+          class="
+            text-xs
+            ml-2
+            px-2
+            inline-block
+            rounded-full
+            uppercase
+            font-semibold
+            tracking-wide
+            bg-indigo-200
+            text-indigo-800
+          "
+        >
+          $ &bull; {{ displayPrice() }}
+        </span>
+      </div>
+
       <div
         class="
           text-sm
@@ -123,10 +167,10 @@
           hover:text-yellow-500
         "
       >
-      <a :href="`tel:${restaurant.display_phone}`">
-        <i class="fas fa-phone mr-2 text-lg"></i>
-        {{ restaurant.display_phone }}
-      </a>
+        <a :href="`tel:${restaurant.display_phone}`">
+          <i class="fas fa-phone mr-2 text-lg"></i>
+          {{ restaurant.display_phone }}
+        </a>
       </div>
       <div
         class="
@@ -142,18 +186,25 @@
         <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
         {{ getFullAdress() }}
       </div>
-      <iframe
+
+      <div class="grid md:grid-cols-2 grid-cols-1">
+        <iframe
           class="my-5"
           width="100%"
           height="350"
           frameborder="0"
           style="border: 0"
-          :src="
-              `https://www.google.com/maps/embed/v1/place?key=AIzaSyApkj-YzyeK4psOw5GTZTLoWaPiW5BkAyI&q=${getFullAdress()}`
-          "
+          :src="`https://www.google.com/maps/embed/v1/place?key=AIzaSyApkj-YzyeK4psOw5GTZTLoWaPiW5BkAyI&q=${getFullAdress()}`"
           allowfullscreen
-      >
-      </iframe>
+        >
+        </iframe>
+        <slider-component
+          class="my-5"
+          style="height: 350px"
+          :images="restaurant.photos"
+        />
+      </div>
+
       <div class="mb-2 text-blueGray-600 mt-10">
         <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i
         >{{ restaurant }}
@@ -169,8 +220,8 @@
           <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
             An artist of considerable range, Jenna the name taken by
             Melbourne-raised, Brooklyn-based Nick Murphy writes, performs and
-            records all of his own music, giving it a warm, intimate feel with
-            a solid groove structure. An artist of considerable range.
+            records all of his own music, giving it a warm, intimate feel with a
+            solid groove structure. An artist of considerable range.
           </p>
           <a href="#pablo" class="font-normal text-pink-500">Show more</a>
         </div>
@@ -179,6 +230,8 @@
   </div>
 </template>
 <script>
+import SliderComponent from "@/components/Slider";
+
 export default {
   props: {
     restaurant: {
@@ -186,18 +239,33 @@ export default {
       required: true,
     },
   },
+  components: {
+    SliderComponent,
+  },
   methods: {
     getFullAdress() {
-      var address = '';
-      this.restaurant.location && this.restaurant.location.display_address.forEach((addr) => {
-        address += ` ${addr}`
-      })
-      return address
+      var address = "";
+      this.restaurant.location &&
+        this.restaurant.location.display_address.forEach((addr) => {
+          address += ` ${addr}`;
+        });
+      return address;
+    },
+    displayPrice() {
+      var price = "Not expensive";
+      if (this.restaurant.price === "$$") {
+        price = "Average";
+      } else if (this.restaurant.price === "$$$") {
+        price = "Expensive";
+      } else if (this.restaurant.price === "$$$$") {
+        price = "Gastronomic";
+      }
+      return price;
     },
     displayDistance() {
       var km = this.restaurant.distance ? this.restaurant.distance / 1000 : 0;
       return km.toFixed(2);
-    }
-  }
+    },
+  },
 };
 </script>

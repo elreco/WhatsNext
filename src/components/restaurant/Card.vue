@@ -129,7 +129,7 @@
                 "
                 target="_blank"
                 :href="restaurant.url"
-                ><i class="fas fa-external-link-alt"></i> View on Yelp</a
+                ><i class="fas fa-external-link-alt"></i> Order on Yelp</a
               >
             </div>
           </div>

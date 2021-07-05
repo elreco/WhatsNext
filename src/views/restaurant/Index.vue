@@ -151,9 +151,7 @@ export default {
 
       setTimeout(() => (this.loading = false), 500);
     },
-    async getDistance() {
-
-    }
+    async getDistance() {},
   },
 };
 </script>

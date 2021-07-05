@@ -1,37 +1,52 @@
 <template>
-    <div>
-        <VueSlickCarousel v-bind="settings">
-        <div class="h-80 bg-red-600 text-white text-center text-4xl font-semibold p-36">Red</div>
-        <div class="h-80 bg-yellow-400 text-white text-center text-4xl font-semibold p-36">Yellow</div>
-        <div class="h-80 bg-green-400 text-white text-center text-4xl font-semibold p-36">Green</div>
-        <div class="h-80 bg-blue-600 text-white text-center text-4xl font-semibold p-36">Blue</div>
-        </VueSlickCarousel>
-    </div>
+  <carousel :autoplay="5000" :wrap-around="true">
+    <slide v-for="slide in images" :key="slide" class="h-full">
+      <img
+        class="w-full h-full object-cover object-center"
+        :src="slide"
+        alt=""
+      />
+    </slide>
+    <template #addons>
+      <navigation />
+    </template>
+  </carousel>
 </template>
 
 <script>
-  import VueSlickCarousel from 'vue-slick-carousel'
-  import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-  // optional style for arrows & dots
-  import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import "vue3-carousel/dist/carousel.css";
 
-  export default {
-    name: 'Slider',
-    components: { VueSlickCarousel },
-  data() {
-    return {
-      settings: {
-        dots: true,
-        infinite: true,
-        rows: 1,
-        initialSlide: 2,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        swipeToSlide: true,
-        arrows: true,
-      },
-    }
+import { Carousel, Slide, Navigation } from "vue3-carousel";
+
+export default {
+  props: {
+    images: {
+      type: Array,
+      required: true,
+    },
   },
-}
+  components: {
+    Carousel,
+    Slide,
+    Navigation,
+  },
+};
 </script>
+
+<style>
+.carousel__viewport {
+  height: 100%;
+}
+.carousel__slide {
+  height: 100%;
+}
+.carousel__track {
+  height: 100%;
+}
+.carousel__prev,
+.carousel__next {
+  background-color: rgba(245, 158, 11, var(--tw-bg-opacity));
+  box-sizing: content-box;
+  border: 3px solid white;
+}
+</style>
