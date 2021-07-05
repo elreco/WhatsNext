@@ -73,14 +73,8 @@
         <div class="flex justify-center py-4 lg:pt-4 pt-8">
           <div class="mr-4 p-3 text-center">
             <span
-              class="
-                text-xl
-                font-bold
-                block
-                uppercase
-                tracking-wide
-                text-blueGray-600
-              "
+              :class="ratingColor()"
+              class="text-xl font-bold block uppercase tracking-wide"
               >{{ restaurant.rating }}/5</span
             ><span class="text-sm text-blueGray-400">Rating</span>
           </div>
@@ -172,7 +166,14 @@
         {{ getFullAdress() }}
       </div>
 
-      <div class="grid md:grid-cols-2 grid-cols-1">
+      <div
+        class="grid grid-cols-1"
+        :class="
+          restaurant.photos && restaurant.photos.length
+            ? 'md:grid-cols-2'
+            : 'md:grid-cols-1'
+        "
+      >
         <iframe
           class="my-5"
           width="100%"
@@ -186,6 +187,7 @@
         <slider-component
           class="my-5"
           style="height: 350px"
+          v-if="restaurant.photos && restaurant.photos.length"
           :images="restaurant.photos"
         />
       </div>
@@ -332,6 +334,15 @@ export default {
         price = "Gastronomic";
       }
       return price;
+    },
+    ratingColor() {
+      if (this.restaurant.rating <= 1) {
+        return "text-red-400";
+      }
+      if (this.restaurant.rating <= 3 && this.restaurant.rating > 1) {
+        return "text-yellow-400";
+      }
+      return "text-teal-600";
     },
   },
 };

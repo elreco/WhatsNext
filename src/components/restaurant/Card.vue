@@ -93,7 +93,7 @@
             <strong> </strong>
             <p>{{ displayDistance() }} kilometers aways</p>
             <div class="mt-4">
-              <span class="text-teal-600 text-md font-semibold"
+              <span :class="ratingColor()" class="text-md font-semibold"
                 >{{ restaurant.rating }}/5 ratings
               </span>
               <span class="text-sm text-gray-600"
@@ -153,6 +153,15 @@ export default {
     displayDistance() {
       var km = this.restaurant.distance ? this.restaurant.distance / 1000 : 0;
       return km.toFixed(3);
+    },
+    ratingColor() {
+      if (this.restaurant.rating <= 1) {
+        return "text-red-400";
+      }
+      if (this.restaurant.rating <= 3 && this.restaurant.rating > 1) {
+        return "text-yellow-400";
+      }
+      return "text-teal-600";
     },
   },
 };
