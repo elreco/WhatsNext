@@ -30,7 +30,8 @@
                 Welcome to <span class="text-yellow-500">WhatsNext</span>.
               </h1>
               <p class="mt-4 text-lg text-gray-300">
-                Hello Mark, Whatsnext is an app which allowing you to find restaurants around your hotel easily.
+                Hello Mark, Whatsnext is an app which allowing you to find
+                restaurants around your hotel easily.
                 <br /><strong>
                   Note that it's a
                   <span class="text-yellow-500">preview version</span> of the

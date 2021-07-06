@@ -126,6 +126,7 @@
       </div>
 
       <div
+        v-if="restaurant.display_phone"
         class="
           text-sm
           leading-normal
@@ -143,6 +144,7 @@
         </a>
       </div>
       <div
+        v-if="getFullAddress()"
         class="
           text-sm
           leading-normal
@@ -154,7 +156,7 @@
         "
       >
         <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-        {{ getFullAdress() }}
+        {{ getFullAddress() }}
       </div>
 
       <div
@@ -171,7 +173,7 @@
           height="350"
           frameborder="0"
           style="border: 0"
-          :src="`https://www.google.com/maps/embed/v1/place?key=${googleApiKey}=${getFullAdress()}`"
+          :src="`https://www.google.com/maps/embed/v1/place?key=${googleApiKey}=${getSanitizedAddress()}`"
           allowfullscreen
         >
         </iframe>
@@ -306,14 +308,16 @@ export default {
           });
         });
     },
-    getFullAdress() {
-      console.log(this.restaurant);
+    getFullAddress() {
       var address = "";
       this.restaurant.location &&
         this.restaurant.location.display_address.forEach((addr) => {
           address += ` ${addr}`;
         });
       return address;
+    },
+    getSanitizedAddress() {
+      return this.sanitizeString(this.getFullAddress());
     },
     displayPrice() {
       var price = "Not expensive";
@@ -334,6 +338,10 @@ export default {
         return "text-yellow-400";
       }
       return "text-teal-600";
+    },
+    sanitizeString(str) {
+      str = str.replace(/[^a-z0-9áéíóúñü.,_-]/gim, "");
+      return str.trim();
     },
   },
 };
