@@ -36,11 +36,10 @@ yarn build
 
 ## Todo
 
-- Filter restaurant list
+- Filter restaurant list - Use [tailwind forms](https://tailwindcss.com/docs/plugins#forms)
     - by rating
     - by price
     - by category
-  Use [tailwind forms](https://tailwindcss.com/docs/plugins#forms)
 - Internationalization
 - Meta title & description
 
