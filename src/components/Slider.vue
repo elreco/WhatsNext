@@ -1,5 +1,5 @@
 <template>
-  <carousel :autoplay="5000" :wrap-around="true">
+  <carousel :wrap-around="true">
     <slide v-for="slide in images" :key="slide" class="h-full">
       <img
         class="w-full h-full object-cover object-center"

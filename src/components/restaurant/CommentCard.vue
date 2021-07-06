@@ -19,7 +19,6 @@
             ? comment.user.image_url
             : '/images/placeholder.jpg'
         }')`"
-        title="Mountain"
       ></div>
       <div
         class="
