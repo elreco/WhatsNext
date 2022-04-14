@@ -144,8 +144,7 @@ export default {
           },
         });
         this.restaurants = data && data.businesses ? data.businesses : [];
-        /* this.total = data.total; */
-        this.total = 990;
+        this.total = data.total;
       } catch (error) {
         this.restaurants = [];
         this.total = 0;
